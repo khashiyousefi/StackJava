@@ -54,4 +54,10 @@ public class stack {
         }
         System.out.println(Arrays.toString(printArray));
     }
+
+    @Override
+    public String toString(){
+        int[] copy = Arrays.copyOfRange(array,0, size);
+        return Arrays.toString(copy);
+    }
 }
