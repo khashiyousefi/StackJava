@@ -3,42 +3,47 @@ package com.SixLink;
 import java.util.Stack;
 
 public class theBalancedExpression {
+    private Character closedBract =  (')');
+    private Character openBract =  ('(');
+    private Character closedPrant=  (']');
+    private Character openPrant =  ('[');
+    private Character closedSign =  ('>');
+    private Character openSign =  ('<');
+    private Character closedCurly =  ('}');
+    private Character openCurly =  ('{');
+    private Stack<Character>stack = new Stack<>();
     public String balancedExpression(String str){
-        Stack<Character>stack = new Stack<>();
-        Character closedBract =  (')');
-        Character OpenBract =  ('(');
-        Character closedPrant=  (']');
-        Character OpenPrant =  ('[');
-        Character closedSign =  ('>');
-        Character OpenSign =  ('<');
+
+
 
         for (int i = 0; i< str.length();i++) {
             Character object = (str.charAt(i));
-            if (object.equals(OpenBract) || object.equals(OpenPrant) || object.equals(OpenSign)) {
-                stack.push(object);
-                continue;
-            }
-            if (object.equals(closedBract)) {
-                if (stack.pop() == OpenBract) {
-                    continue;
-                }
-                else return "Expression NOT Balanced";
-            }
-            if (object.equals(closedPrant)) {
-                if (stack.pop() == OpenPrant) {
-                    continue;
-                }
-                else return "Expression NOT Balanced";
-            }
-            if (object.equals(closedSign)) {
-                if (stack.pop() == OpenSign) {
-                    continue;
-                }
-                else return "Expression NOT Balanced";
-            }
+            isOpen(object);
+            if (!isClosed(object)) return "Expression NOT Balanced";
         }
         if (stack.empty()){
             return "Expression is Balanced";
         }else return "Expression NOT Balanced";
     }
+
+
+    private void isOpen(Character item){
+        if (item.equals(openBract) || item.equals(openPrant) || item.equals(openSign)|| item.equals(openCurly)) {
+            stack.push(item);
+        }
+    }
+
+    private boolean isClosed(Character item){
+        if (stack.empty()) return false;
+        if (item.equals(closedBract))
+            return  (stack.pop() == openBract);
+        else if (item.equals(closedPrant))
+            return (stack.pop() == openPrant);
+        else if (item.equals(closedSign))
+            return (stack.pop() == openSign);
+        else if (item.equals(closedCurly))
+            return (stack.pop() == openCurly);
+        else return true;
+    }
+
 }

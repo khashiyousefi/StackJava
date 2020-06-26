@@ -6,7 +6,8 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-        String str = "[((a)bc<(d)>)]";
+
+        String str = "(abcd";
         var reverse = new reverse();
         reverse.setReversed(str);
         var check = new theBalancedExpression();
