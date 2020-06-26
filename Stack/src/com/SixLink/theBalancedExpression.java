@@ -1,8 +1,13 @@
 package com.SixLink;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class theBalancedExpression {
+    private final List<Character> open = Arrays.asList('(', '{','[','<');
+    private final List<Character> close = Arrays.asList(')','}',']','>');
     private Character closedBract =  (')');
     private Character openBract =  ('(');
     private Character closedPrant=  (']');
@@ -28,9 +33,8 @@ public class theBalancedExpression {
 
 
     private void isOpen(Character item){
-        if (item.equals(openBract) || item.equals(openPrant) || item.equals(openSign)|| item.equals(openCurly)) {
+        if (open.contains(item))
             stack.push(item);
-        }
     }
 
     private boolean isClosed(Character item){
