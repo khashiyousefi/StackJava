@@ -54,6 +54,15 @@ public class stack {
         }
         System.out.println(Arrays.toString(printArray));
     }
+    public int min(){
+        int min = array[0];
+        for (int i = 1; i<size;i++){
+            if (array[i] < min){
+                min = array[i];
+            }
+        }
+        return min;
+    }
 
     @Override
     public String toString(){
